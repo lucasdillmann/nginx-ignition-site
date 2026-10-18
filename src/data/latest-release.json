@@ -1,0 +1,67 @@
+{
+  "version": "2.48.0",
+  "publishedAt": "2026-10-11T06:09:53Z",
+  "htmlUrl": "https://github.com/lucasdillmann/nginx-ignition/releases/tag/2.48.0",
+  "assets": [
+    {
+      "name": "nginx-ignition-2.48.0.amd64.apk",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.amd64.apk"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.amd64.deb",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.amd64.deb"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.amd64.ipk",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.amd64.ipk"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.amd64.pkg.tar.zst",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.amd64.pkg.tar.zst"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.amd64.rpm",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.amd64.rpm"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.arm64.apk",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.arm64.apk"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.arm64.deb",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.arm64.deb"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.arm64.ipk",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.arm64.ipk"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.arm64.pkg.tar.zst",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.arm64.pkg.tar.zst"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.arm64.rpm",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.arm64.rpm"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.linux-amd64.zip",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.linux-amd64.zip"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.linux-arm64.zip",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.linux-arm64.zip"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.macos-arm64.zip",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.macos-arm64.zip"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.windows-amd64.zip",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.windows-amd64.zip"
+    },
+    {
+      "name": "nginx-ignition-2.48.0.windows-arm64.zip",
+      "url": "https://github.com/lucasdillmann/nginx-ignition/releases/download/2.48.0/nginx-ignition-2.48.0.windows-arm64.zip"
+    }
+  ]
+}
