@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import fallbackRelease from "../data/latest-release.json"
 import { GITHUB_REPOSITORY, LINKS } from "../config"
+import { posthogLog } from "./posthog-logs"
 
 export interface ReleaseAsset {
     name: string
@@ -99,6 +100,9 @@ export function getLatestRelease(): Promise<ReleaseInfo> {
         const cached = readCache()
 
         if (cached) {
+            posthogLog.info("release metadata loaded from cache", {
+                source: "session_storage",
+            })
             return cached
         }
 
@@ -113,9 +117,15 @@ export function getLatestRelease(): Promise<ReleaseInfo> {
 
             const release = mapApiRelease((await response.json()) as ApiRelease)
             writeCache(release)
+            posthogLog.info("release metadata loaded from GitHub", {
+                source: "github_api",
+            })
 
             return release
         } catch {
+            posthogLog.warn("release metadata fallback used", {
+                source: "bundled_fallback",
+            })
             return FALLBACK_RELEASE
         }
     })()

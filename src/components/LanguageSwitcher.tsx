@@ -5,6 +5,7 @@ import {
     SUPPORTED_LANGUAGES,
     resolveLanguage,
 } from "../i18n/languages"
+import posthog from "../lib/posthog"
 import { CheckIcon, GlobeIcon } from "./icons"
 
 export default function LanguageSwitcher() {
@@ -72,6 +73,12 @@ export default function LanguageSwitcher() {
                                 }`}
                                 lang={language}
                                 onClick={() => {
+                                    if (language !== current && posthog.__loaded) {
+                                        posthog.capture("language_changed", {
+                                            language,
+                                        })
+                                    }
+
                                     void i18n.changeLanguage(language)
                                     setOpen(false)
                                 }}

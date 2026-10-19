@@ -14,6 +14,7 @@ import {
     type LinuxFormat,
 } from "../lib/downloads"
 import { useLatestRelease } from "../lib/release"
+import posthog from "../lib/posthog"
 import { Link } from "react-router"
 
 const DOCKER_COMMAND = `docker run -p 8090:8090 -p 80:80 -p 443:443 ${DOCKER_IMAGE}`
@@ -75,6 +76,20 @@ export default function GettingStartedPage() {
     const release = useLatestRelease()
     const [arch, setArch] = useState<Arch>("amd64")
     const [format, setFormat] = useState<LinuxFormat>("deb")
+
+    function capturePackageDownload(
+        platform: "linux" | "macos" | "windows",
+        architecture: Arch,
+        packageFormat: LinuxFormat,
+    ) {
+        if (posthog.__loaded) {
+            posthog.capture("package_download_started", {
+                platform,
+                architecture,
+                package_format: packageFormat,
+            })
+        }
+    }
 
     const publishedDate = useMemo(() => {
         if (!release?.publishedAt) {
@@ -323,6 +338,13 @@ export default function GettingStartedPage() {
                                               )
                                             : LINKS.latestRelease
                                     }
+                                    onClick={() =>
+                                        capturePackageDownload(
+                                            "linux",
+                                            arch,
+                                            format,
+                                        )
+                                    }
                                 >
                                     <DownloadIcon />
                                     {t("gettingStarted.linuxDownload")}
@@ -347,6 +369,13 @@ export default function GettingStartedPage() {
                                     release
                                         ? urlOrReleasesPage(macosUrl(release))
                                         : LINKS.latestRelease
+                                }
+                                onClick={() =>
+                                    capturePackageDownload(
+                                        "macos",
+                                        "arm64",
+                                        "zip",
+                                    )
                                 }
                             >
                                 <DownloadIcon />
@@ -378,6 +407,13 @@ export default function GettingStartedPage() {
                                               )
                                             : LINKS.latestRelease
                                     }
+                                    onClick={() =>
+                                        capturePackageDownload(
+                                            "windows",
+                                            "amd64",
+                                            "zip",
+                                        )
+                                    }
                                 >
                                     <DownloadIcon />
                                     {t("gettingStarted.windowsX64")}
@@ -390,6 +426,13 @@ export default function GettingStartedPage() {
                                                   windowsUrl(release, "arm64"),
                                               )
                                             : LINKS.latestRelease
+                                    }
+                                    onClick={() =>
+                                        capturePackageDownload(
+                                            "windows",
+                                            "arm64",
+                                            "zip",
+                                        )
                                     }
                                 >
                                     <DownloadIcon />

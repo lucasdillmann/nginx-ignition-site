@@ -1,10 +1,17 @@
 import { useTranslation } from "react-i18next"
 import { Link } from "react-router"
 import { LINKS } from "../config"
+import posthog from "../lib/posthog"
 import { GitHubIcon } from "./icons"
 
 export default function CtaBand() {
     const { t } = useTranslation()
+
+    function captureSupportChannel(channel: "discussions" | "issues") {
+        if (posthog.__loaded) {
+            posthog.capture("support_channel_opened", { channel })
+        }
+    }
 
     return (
         <section className="cta-band">
@@ -24,6 +31,13 @@ export default function CtaBand() {
                             href={LINKS.github}
                             target="_blank"
                             rel="noreferrer"
+                            onClick={() => {
+                                if (posthog.__loaded) {
+                                    posthog.capture("github_repository_opened", {
+                                        placement: "cta_band",
+                                    })
+                                }
+                            }}
                         >
                             <GitHubIcon />
                             {t("common.starOnGitHub")}
@@ -35,6 +49,7 @@ export default function CtaBand() {
                             href={LINKS.discussions}
                             target="_blank"
                             rel="noreferrer"
+                            onClick={() => captureSupportChannel("discussions")}
                         >
                             {t("home.ctaDiscussions")}
                         </a>
@@ -43,6 +58,7 @@ export default function CtaBand() {
                             href={LINKS.issues}
                             target="_blank"
                             rel="noreferrer"
+                            onClick={() => captureSupportChannel("issues")}
                         >
                             {t("home.ctaIssues")}
                         </a>

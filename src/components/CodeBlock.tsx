@@ -5,6 +5,7 @@ import {
     tokenize,
     type CodeLanguage,
 } from "../lib/highlight"
+import posthog from "../lib/posthog"
 import { CheckIcon, CopyIcon } from "./icons"
 
 interface CodeBlockProps {
@@ -33,6 +34,12 @@ export default function CodeBlock({
             await navigator.clipboard.writeText(code)
         } catch {
             return
+        }
+
+        if (posthog.__loaded) {
+            posthog.capture("code_block_copied", {
+                command_language: resolvedLanguage,
+            })
         }
 
         setCopied(true)
