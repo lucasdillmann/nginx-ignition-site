@@ -191,26 +191,31 @@ const ru: Messages = {
         downloadsHint:
             "Не знаете, что выбрать? Docker — самый простой вариант на любой платформе.",
         macosTitle: "macOS",
-        macosNote: "Требуется macOS 12 или новее.",
+        macosNote: "Переносимый ZIP для macOS 12 или новее. Требуется Apple Silicon.",
         macosButton: "Скачать для macOS",
-        macosArchNote: "Apple Silicon (arm64). Для Intel Mac: используйте Docker.",
+        macosArchNote: "Если вы используете Intel Mac, используйте Docker.",
         windowsTitle: "Windows",
         windowsNote:
-            "ZIP-архив с приложением, интерфейсом, миграциями и готовым к использованию файлом properties.",
-        windowsX64: "Скачать для Windows (x64)",
-        windowsArm64: "Скачать для Windows (arm64)",
+            "Нативный установщик или переносимый ZIP. Требуется Windows 10, Server 2016 и новее.",
+        windowsArchLabel: "Архитектура",
+        windowsFormatLabel: "Пакет",
+        windowsDownload: "Скачать для Windows",
+        windowsFormats: {
+            installer: "Установщик",
+            zip: "Переносимый ZIP",
+        },
         linuxTitle: "Linux",
-        linuxNote: "Нативные пакеты и универсальные архивы для amd64 и arm64.",
+        linuxNote: "Нативные пакеты и переносимый ZIP для amd64 и arm64.",
         linuxArchLabel: "Архитектура",
         linuxFormatLabel: "Пакет",
         linuxDownload: "Скачать для Linux",
         linuxFormats: {
-            deb: "deb — Debian, Ubuntu",
-            rpm: "rpm — Fedora, RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — универсальный архив",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "Переносимый ZIP",
         },
         nativeTitle: "Нативная установка",
         nativeSubtitle:
@@ -244,15 +249,19 @@ const ru: Messages = {
             "Откройте http://your-host:8090 и завершите настройку в браузере.",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "Распакуйте ZIP-архив в удобный каталог, например C:\\nginx-ignition.",
+            "Запустите установщик для вашей архитектуры. Требуется Windows 10 или Windows Server 2016 и новее; Windows SmartScreen может попросить подтверждение, так как установщик ещё не подписан.",
         nativeWindowsStep2:
-            "Отредактируйте nginx-ignition.properties и укажите в nginx.binary-path расположение вашего nginx.exe.",
+            "Выберите Express (автоматически находит nginx, слушает 127.0.0.1:8090 и использует SQLite) или Advanced, чтобы задать путь к nginx, порт, базу данных, учётную запись службы и правила брандмауэра.",
         nativeWindowsStep3:
-            "Запустите nginx-ignition.exe из командной строки с правами администратора.",
+            "Установщик автоматически регистрирует службу Windows nginx-ignition, правила брандмауэра и источник журнала событий.",
         nativeWindowsStep4:
-            "Разрешите порт 8090 в брандмауэре Windows. Для запуска в качестве службы используйте NSSM или WinSW.",
+            "Если служба ещё не запущена, запустите её через Services или командную строку с правами администратора. Журналы службы отображаются в Event Viewer в источнике nginx-ignition.",
         nativeWindowsStep5:
             "Откройте http://localhost:8090 и завершите настройку в браузере.",
+        nativeWindowsUpgradeNote:
+            "Обновление: запустите установщик новой версии. Он остановит службу, заменит файлы приложения и сохранит вашу конфигурацию и данные.",
+        nativeWindowsInstallerGuide:
+            "Руководство по установщику (параметры и тихая установка)",
         firstStepsTitle: "После установки",
         firstStepsSubtitle: "Короткий чек-лист, чтобы получить максимум:",
         firstSteps1: "Пройдите мастер настройки и войдите в систему.",
@@ -441,6 +450,10 @@ const ru: Messages = {
             migration: {
                 title: "Руководство по миграции",
                 body: "Обновление с nginx ignition 1.x до 2.x.",
+            },
+            windowsInstaller: {
+                title: "Установщик Windows",
+                body: "Параметры установщика, тихая установка, обновления и удаление.",
             },
             apiTokens: {
                 title: "API токены",

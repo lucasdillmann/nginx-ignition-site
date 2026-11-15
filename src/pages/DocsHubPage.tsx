@@ -8,6 +8,7 @@ import { DOC_GUIDES, DOC_GUIDE_PATHS } from "../data/guides"
 const REFERENCE_LINKS = [
     { key: "config", href: LINKS.configReference, icon: "📜" },
     { key: "migration", href: LINKS.migrationGuide, icon: "🔁" },
+    { key: "windowsInstaller", href: LINKS.windowsInstallerDoc, icon: "💿" },
     { key: "apiTokens", href: LINKS.apiTokensDoc, icon: "🔑" },
     { key: "healthChecks", href: LINKS.healthChecksDoc, icon: "🏥" },
     { key: "restore", href: LINKS.restoreGuide, icon: "💾" },

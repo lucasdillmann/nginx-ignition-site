@@ -190,26 +190,31 @@ const vi: Messages = {
         downloadsHint:
             "Không biết chọn cái nào? Docker là lựa chọn đơn giản nhất trên mọi nền tảng.",
         macosTitle: "macOS",
-        macosNote: "Yêu cầu macOS 12 trở lên.",
+        macosNote: "ZIP di động cho macOS 12 trở lên. Yêu cầu Apple Silicon.",
         macosButton: "Tải cho macOS",
-        macosArchNote: "Apple Silicon (arm64). Với máy Mac Intel: hãy dùng Docker.",
+        macosArchNote: "Nếu bạn dùng máy Mac Intel, hãy dùng Docker thay thế.",
         windowsTitle: "Windows",
         windowsNote:
-            "Tệp ZIP gồm ứng dụng, giao diện, các migration và tệp properties sẵn sàng sử dụng.",
-        windowsX64: "Tải cho Windows (x64)",
-        windowsArm64: "Tải cho Windows (arm64)",
+            "Trình cài đặt native hoặc ZIP di động. Yêu cầu Windows 10, Server 2016 trở lên.",
+        windowsArchLabel: "Kiến trúc",
+        windowsFormatLabel: "Gói",
+        windowsDownload: "Tải cho Windows",
+        windowsFormats: {
+            installer: "Trình cài đặt",
+            zip: "ZIP di động",
+        },
         linuxTitle: "Linux",
-        linuxNote: "Gói native và các gói tổng quát cho amd64 và arm64.",
+        linuxNote: "Gói native và ZIP di động, cho amd64 và arm64.",
         linuxArchLabel: "Kiến trúc",
         linuxFormatLabel: "Gói",
         linuxDownload: "Tải cho Linux",
         linuxFormats: {
-            deb: "deb — Debian, Ubuntu",
-            rpm: "rpm — Fedora, RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — gói tổng quát",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "ZIP di động",
         },
         nativeTitle: "Cài đặt native",
         nativeSubtitle:
@@ -243,15 +248,19 @@ const vi: Messages = {
             "Mở http://your-host:8090 và hoàn tất thiết lập trong trình duyệt.",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "Giải nén tệp ZIP vào thư mục bạn muốn, chẳng hạn như C:\\nginx-ignition.",
+            "Chạy trình cài đặt cho kiến trúc của bạn. Cần Windows 10 hoặc Windows Server 2016 trở lên; Windows SmartScreen có thể yêu cầu xác nhận vì trình cài đặt chưa được ký.",
         nativeWindowsStep2:
-            "Chỉnh sửa nginx-ignition.properties và đặt nginx.binary-path đến vị trí nginx.exe của bạn.",
+            "Chọn Express (tự phát hiện nginx, lắng nghe trên 127.0.0.1:8090 và dùng SQLite), hoặc Advanced để đặt đường dẫn nginx, cổng, cơ sở dữ liệu, tài khoản dịch vụ và quy tắc tường lửa.",
         nativeWindowsStep3:
-            "Chạy nginx-ignition.exe từ cửa sổ dòng lệnh với quyền Administrator.",
+            "Trình cài đặt tự động đăng ký dịch vụ Windows nginx-ignition, quy tắc tường lửa và nguồn Event Log.",
         nativeWindowsStep4:
-            "Cho phép cổng 8090 trong Windows Firewall. Để chạy dưới dạng dịch vụ, hãy dùng NSSM hoặc WinSW.",
+            "Nếu dịch vụ chưa chạy, hãy khởi động từ Services hoặc cửa sổ dòng lệnh với quyền Administrator. Nhật ký dịch vụ hiển thị trong Event Viewer dưới nguồn nginx-ignition.",
         nativeWindowsStep5:
             "Mở http://localhost:8090 và hoàn tất thiết lập trong trình duyệt.",
+        nativeWindowsUpgradeNote:
+            "Nâng cấp: chạy trình cài đặt của phiên bản mới. Trình cài đặt dừng dịch vụ, thay các tệp ứng dụng và giữ nguyên cấu hình cùng dữ liệu của bạn.",
+        nativeWindowsInstallerGuide:
+            "Hướng dẫn trình cài đặt (tùy chọn và cài đặt không giao diện)",
         firstStepsTitle: "Sau khi cài đặt",
         firstStepsSubtitle: "Danh sách ngắn để tận dụng tối đa:",
         firstSteps1: "Hoàn tất trình hướng dẫn thiết lập và đăng nhập.",
@@ -440,6 +449,10 @@ const vi: Messages = {
             migration: {
                 title: "Hướng dẫn nâng cấp",
                 body: "Nâng cấp từ nginx ignition 1.x lên 2.x.",
+            },
+            windowsInstaller: {
+                title: "Trình cài đặt Windows",
+                body: "Tùy chọn trình cài đặt, cài đặt không giao diện, nâng cấp và gỡ cài đặt.",
             },
             apiTokens: {
                 title: "Token API",

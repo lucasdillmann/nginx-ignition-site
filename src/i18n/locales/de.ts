@@ -192,27 +192,32 @@ const de: Messages = {
         downloadsHint:
             "Nicht sicher, was Sie wählen sollen? Docker ist auf jeder Plattform die einfachste Option.",
         macosTitle: "macOS",
-        macosNote: "Erfordert macOS 12 oder neuer.",
+        macosNote: "Portables ZIP für macOS 12 oder neuer. Erfordert Apple Silicon.",
         macosButton: "Für macOS herunterladen",
         macosArchNote:
-            "Apple Silicon (arm64). Intel-Macs: Docker verwenden.",
+            "Wenn Sie einen Intel-Mac verwenden, verwenden Sie bitte Docker.",
         windowsTitle: "Windows",
         windowsNote:
-            "ZIP-Archiv mit der Anwendung, der Oberfläche, den Migrationen und einer sofort nutzbaren Properties-Datei.",
-        windowsX64: "Für Windows herunterladen (x64)",
-        windowsArm64: "Für Windows herunterladen (arm64)",
+            "Nativer Installer oder portables ZIP. Erfordert Windows 10, Server 2016 oder neuer.",
+        windowsArchLabel: "Architektur",
+        windowsFormatLabel: "Paket",
+        windowsDownload: "Für Windows herunterladen",
+        windowsFormats: {
+            installer: "Installer",
+            zip: "Portables ZIP",
+        },
         linuxTitle: "Linux",
-        linuxNote: "Native Pakete und generische Archive, für amd64 und arm64.",
+        linuxNote: "Native Pakete und portables ZIP, für amd64 und arm64.",
         linuxArchLabel: "Architektur",
         linuxFormatLabel: "Paket",
         linuxDownload: "Für Linux herunterladen",
         linuxFormats: {
-            deb: "deb — Debian, Ubuntu",
-            rpm: "rpm — Fedora, RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — generisches Archiv",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "Portables ZIP",
         },
         nativeTitle: "Native Installationen",
         nativeSubtitle:
@@ -246,15 +251,19 @@ const de: Messages = {
             "Öffnen Sie http://your-host:8090 und schließen Sie die Einrichtung im Browser ab.",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "Entpacken Sie das ZIP-Archiv in ein Verzeichnis Ihrer Wahl, zum Beispiel C:\\nginx-ignition.",
+            "Führen Sie den Installer für Ihre Architektur aus. Er erfordert Windows 10 oder Windows Server 2016 oder neuer; Windows SmartScreen fragt möglicherweise nach einer Bestätigung, da der Installer noch nicht signiert ist.",
         nativeWindowsStep2:
-            "Bearbeiten Sie nginx-ignition.properties und setzen Sie nginx.binary-path auf den Speicherort Ihrer nginx.exe.",
+            "Wählen Sie Express (erkennt nginx automatisch, lauscht auf 127.0.0.1:8090 und nutzt SQLite) oder Advanced, um nginx-Pfad, Port, Datenbank, Dienstkonto und Firewallregeln festzulegen.",
         nativeWindowsStep3:
-            "Führen Sie nginx-ignition.exe in einer Administrator-Eingabeaufforderung aus.",
+            "Der Installer registriert automatisch den Windows-Dienst nginx-ignition, die Firewallregeln und die Ereignisprotokollquelle.",
         nativeWindowsStep4:
-            "Erlauben Sie Port 8090 in der Windows-Firewall. Für den Betrieb als Dienst verwenden Sie NSSM oder WinSW.",
+            "Wenn der Dienst noch nicht läuft, starten Sie ihn über Dienste oder eine Administrator-Eingabeaufforderung. Dienstprotokolle erscheinen in der Ereignisanzeige unter der Quelle nginx-ignition.",
         nativeWindowsStep5:
             "Öffnen Sie http://localhost:8090 und schließen Sie die Einrichtung im Browser ab.",
+        nativeWindowsUpgradeNote:
+            "Upgrade: Führen Sie den Installer der neuen Version aus. Er stoppt den Dienst, ersetzt die Anwendungsdateien und behält Ihre Konfiguration und Daten bei.",
+        nativeWindowsInstallerGuide:
+            "Installer-Anleitung (Optionen und unbeaufsichtigte Installation)",
         firstStepsTitle: "Nach der Installation",
         firstStepsSubtitle:
             "Eine kurze Checkliste, um das Beste herauszuholen:",
@@ -446,6 +455,10 @@ const de: Messages = {
             migration: {
                 title: "Migrationsanleitung",
                 body: "Upgrade von nginx ignition 1.x auf 2.x.",
+            },
+            windowsInstaller: {
+                title: "Windows-Installer",
+                body: "Installer-Optionen, unbeaufsichtigte Installation, Upgrades und Deinstallation.",
             },
             apiTokens: {
                 title: "API-Tokens",

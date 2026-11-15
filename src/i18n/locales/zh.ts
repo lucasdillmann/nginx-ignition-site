@@ -190,26 +190,31 @@ const zh: Messages = {
         downloadsHint:
             "不确定选哪个？在任何平台上，Docker 都是最简单的选择。",
         macosTitle: "macOS",
-        macosNote: "需要 macOS 12 或更高版本。",
+        macosNote: "适用于 macOS 12 或更高版本的便携式 ZIP。需要 Apple Silicon。",
         macosButton: "下载 macOS 版",
-        macosArchNote: "Apple Silicon（arm64）。Intel Mac：请使用 Docker。",
+        macosArchNote: "如果你使用的是 Intel Mac，请改用 Docker。",
         windowsTitle: "Windows",
         windowsNote:
-            "包含应用程序、UI、迁移脚本和开箱即用的 properties 文件的 ZIP 压缩包。",
-        windowsX64: "下载 Windows 版（x64）",
-        windowsArm64: "下载 Windows 版（arm64）",
+            "原生安装程序或便携式 ZIP。需要 Windows 10、Server 2016 或更高版本。",
+        windowsArchLabel: "架构",
+        windowsFormatLabel: "安装包",
+        windowsDownload: "下载 Windows 版",
+        windowsFormats: {
+            installer: "安装程序",
+            zip: "便携式 ZIP",
+        },
         linuxTitle: "Linux",
-        linuxNote: "适用于 amd64 和 arm64 的原生安装包和通用归档包。",
+        linuxNote: "适用于 amd64 和 arm64 的原生安装包和便携式 ZIP。",
         linuxArchLabel: "架构",
         linuxFormatLabel: "安装包",
         linuxDownload: "下载 Linux 版",
         linuxFormats: {
-            deb: "deb — Debian、Ubuntu",
-            rpm: "rpm — Fedora、RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — 通用归档包",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "便携式 ZIP",
         },
         nativeTitle: "原生安装",
         nativeSubtitle:
@@ -243,15 +248,19 @@ const zh: Messages = {
             "打开 http://your-host:8090，在浏览器中完成设置。",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "将 ZIP 压缩包解压到任意目录，例如 C:\\nginx-ignition。",
+            "运行适用于你的架构的安装程序。需要 Windows 10 或 Windows Server 2016 或更高版本；由于安装程序尚未签名，Windows SmartScreen 可能会要求你确认。",
         nativeWindowsStep2:
-            "编辑 nginx-ignition.properties，将 nginx.binary-path 设置为你的 nginx.exe 所在位置。",
+            "选择 Express（自动检测 nginx，监听 127.0.0.1:8090 并使用 SQLite），或选择 Advanced 以设置 nginx 路径、端口、数据库、服务账户和防火墙规则。",
         nativeWindowsStep3:
-            "在管理员命令提示符中运行 nginx-ignition.exe。",
+            "安装程序会自动注册 nginx-ignition Windows 服务、防火墙规则和事件日志源。",
         nativeWindowsStep4:
-            "在 Windows 防火墙中允许 8090 端口。如需以服务方式运行，请使用 NSSM 或 WinSW。",
+            "如果服务尚未运行，请从“服务”或管理员命令提示符中启动它。服务日志会显示在事件查看器的 nginx-ignition 源下。",
         nativeWindowsStep5:
             "打开 http://localhost:8090，在浏览器中完成设置。",
+        nativeWindowsUpgradeNote:
+            "升级：运行新版本的安装程序。它会停止服务、替换应用程序文件，并保留你的配置和数据。",
+        nativeWindowsInstallerGuide:
+            "安装程序指南（选项与静默安装）",
         firstStepsTitle: "安装之后",
         firstStepsSubtitle: "一份简短的检查清单，助你充分上手：",
         firstSteps1: "完成安装向导并登录。",
@@ -440,6 +449,10 @@ const zh: Messages = {
             migration: {
                 title: "迁移指南",
                 body: "从 nginx ignition 1.x 升级到 2.x。",
+            },
+            windowsInstaller: {
+                title: "Windows 安装程序",
+                body: "安装程序选项、静默安装、升级和卸载。",
             },
             apiTokens: {
                 title: "API 令牌",

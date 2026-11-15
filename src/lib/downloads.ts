@@ -13,6 +13,12 @@ export const LINUX_FORMATS: LinuxFormat[] = [
     "zip",
 ]
 
+export type WindowsFormat = "installer" | "zip"
+
+export const WINDOWS_FORMATS: WindowsFormat[] = ["installer", "zip"]
+
+export type PackageFormat = LinuxFormat | "installer"
+
 function findAsset(release: ReleaseInfo, suffix: string): string | undefined {
     return release.assets.find(asset => asset.name.endsWith(suffix))?.url
 }
@@ -21,10 +27,15 @@ export function macosUrl(release: ReleaseInfo): string | undefined {
     return findAsset(release, ".macos-arm64.zip")
 }
 
-export function windowsUrl(
+export function windowsPackageUrl(
     release: ReleaseInfo,
     arch: Arch,
+    format: WindowsFormat,
 ): string | undefined {
+    if (format === "installer") {
+        return findAsset(release, `.windows-${arch}-setup.exe`)
+    }
+
     return findAsset(release, `.windows-${arch}.zip`)
 }
 

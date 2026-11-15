@@ -24,6 +24,7 @@ export const LINKS = {
     linuxInstructions: `${github}/blob/main/dist/linux/instructions.md`,
     macosInstructions: `${github}/blob/main/dist/macos/instructions.md`,
     windowsInstructions: `${github}/blob/main/dist/windows/instructions.md`,
+    windowsInstallerDoc: `${github}/blob/main/docs/windows-installer.md`,
     linkedin: "https://linkedin.com/in/lucasdillmann",
 } as const
 

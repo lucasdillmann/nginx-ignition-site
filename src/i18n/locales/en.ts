@@ -188,26 +188,32 @@ const en = {
         downloadsHint:
             "Not sure which to pick? Docker is the simplest option on any platform.",
         macosTitle: "macOS",
-        macosNote: "Requires macOS 12 or newer.",
+        macosNote: "Portable ZIP for macOS 12 or newer. Requires Apple Silicon.",
         macosButton: "Download for macOS",
-        macosArchNote: "Apple Silicon (arm64). Intel Macs: use Docker.",
+        macosArchNote:
+            "If you're using an Intel Mac, please use Docker instead.",
         windowsTitle: "Windows",
         windowsNote:
-            "ZIP archive with the application, the UI, migrations and a ready-to-use properties file.",
-        windowsX64: "Download for Windows (x64)",
-        windowsArm64: "Download for Windows (arm64)",
+            "Native installer or portable ZIP. Requires Windows 10, Server 2016 or later.",
+        windowsArchLabel: "Architecture",
+        windowsFormatLabel: "Package",
+        windowsDownload: "Download for Windows",
+        windowsFormats: {
+            installer: "Installer",
+            zip: "Portable ZIP",
+        },
         linuxTitle: "Linux",
-        linuxNote: "Native packages and generic archives, for amd64 and arm64.",
+        linuxNote: "Native packages and portable ZIP, for amd64 and arm64.",
         linuxArchLabel: "Architecture",
         linuxFormatLabel: "Package",
         linuxDownload: "Download for Linux",
         linuxFormats: {
-            deb: "deb — Debian, Ubuntu",
-            rpm: "rpm — Fedora, RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — generic archive",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "Portable ZIP",
         },
         nativeTitle: "Native installs",
         nativeSubtitle:
@@ -241,15 +247,19 @@ const en = {
             "Open http://your-host:8090 and finish the setup in the browser.",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "Extract the ZIP archive to a directory of your choice, such as C:\\nginx-ignition.",
+            "Run the installer for your architecture. It requires Windows 10 or Windows Server 2016 or later, and Windows SmartScreen may ask you to confirm because the installer is not signed yet.",
         nativeWindowsStep2:
-            "Edit nginx-ignition.properties and set nginx.binary-path to the location of your nginx.exe.",
+            "Choose Express (auto-detects nginx, listens on 127.0.0.1:8090 and uses SQLite), or Advanced to set the nginx path, port, database, service account and firewall rules.",
         nativeWindowsStep3:
-            "Run nginx-ignition.exe from an Administrator prompt.",
+            "The installer registers the nginx-ignition Windows service, firewall rules and Event Log source automatically.",
         nativeWindowsStep4:
-            "Allow port 8090 in Windows Firewall. To run as a service, use NSSM or WinSW.",
+            "If the service is not already running, start it from Services or an Administrator prompt. Service logs appear in Event Viewer under the nginx-ignition source.",
         nativeWindowsStep5:
             "Open http://localhost:8090 and finish the setup in the browser.",
+        nativeWindowsUpgradeNote:
+            "Upgrading: run the installer for the new version. It stops the service, replaces the application files and keeps your configuration and data.",
+        nativeWindowsInstallerGuide:
+            "Installer guide (options and silent install)",
         firstStepsTitle: "After installing",
         firstStepsSubtitle: "A short checklist to get the most out of it:",
         firstSteps1: "Finish the setup wizard and sign in.",
@@ -438,6 +448,10 @@ const en = {
             migration: {
                 title: "Migration guide",
                 body: "Upgrading from nginx ignition 1.x to 2.x.",
+            },
+            windowsInstaller: {
+                title: "Windows installer",
+                body: "Installer options, silent install, upgrades and uninstall.",
             },
             apiTokens: {
                 title: "API tokens",

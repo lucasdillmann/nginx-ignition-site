@@ -6,12 +6,15 @@ import { DownloadIcon, ExternalLinkIcon, AppleIcon, LinuxIcon, WindowsIcon } fro
 import { DOCKER_IMAGE, LINKS } from "../config"
 import {
     LINUX_FORMATS,
+    WINDOWS_FORMATS,
     linuxUrl,
     macosUrl,
     urlOrReleasesPage,
-    windowsUrl,
+    windowsPackageUrl,
     type Arch,
     type LinuxFormat,
+    type PackageFormat,
+    type WindowsFormat,
 } from "../lib/downloads"
 import { useLatestRelease } from "../lib/release"
 import posthog from "../lib/posthog"
@@ -71,16 +74,24 @@ const FORMAT_LABEL_KEYS = {
     zip: "linuxFormats.zip",
 } as const satisfies Record<LinuxFormat, string>
 
+const WINDOWS_FORMAT_LABEL_KEYS = {
+    installer: "windowsFormats.installer",
+    zip: "windowsFormats.zip",
+} as const satisfies Record<WindowsFormat, string>
+
 export default function GettingStartedPage() {
     const { t, i18n } = useTranslation()
     const release = useLatestRelease()
     const [arch, setArch] = useState<Arch>("amd64")
     const [format, setFormat] = useState<LinuxFormat>("deb")
+    const [windowsArch, setWindowsArch] = useState<Arch>("amd64")
+    const [windowsFormat, setWindowsFormat] =
+        useState<WindowsFormat>("installer")
 
     function capturePackageDownload(
         platform: "linux" | "macos" | "windows",
         architecture: Arch,
-        packageFormat: LinuxFormat,
+        packageFormat: PackageFormat,
     ) {
         if (posthog.__loaded) {
             posthog.capture("package_download_started", {
@@ -268,7 +279,7 @@ export default function GettingStartedPage() {
                         </div>
                     )}
 
-                    <div className="card-grid">
+                    <div className="card-grid downloads-grid">
                         <div className="download-card">
                             <div className="download-card__head">
                                 <LinuxIcon
@@ -325,31 +336,116 @@ export default function GettingStartedPage() {
                                         ))}
                                     </select>
                                 </div>
-                                <a
-                                    className="btn btn--primary"
-                                    href={
-                                        release
-                                            ? urlOrReleasesPage(
-                                                  linuxUrl(
-                                                      release,
-                                                      arch,
-                                                      format,
-                                                  ),
-                                              )
-                                            : LINKS.latestRelease
-                                    }
-                                    onClick={() =>
-                                        capturePackageDownload(
-                                            "linux",
-                                            arch,
-                                            format,
-                                        )
-                                    }
-                                >
-                                    <DownloadIcon />
-                                    {t("gettingStarted.linuxDownload")}
-                                </a>
                             </div>
+                            <a
+                                className="btn btn--primary"
+                                href={
+                                    release
+                                        ? urlOrReleasesPage(
+                                              linuxUrl(
+                                                  release,
+                                                  arch,
+                                                  format,
+                                              ),
+                                          )
+                                        : LINKS.latestRelease
+                                }
+                                onClick={() =>
+                                    capturePackageDownload(
+                                        "linux",
+                                        arch,
+                                        format,
+                                    )
+                                }
+                            >
+                                <DownloadIcon />
+                                {t("gettingStarted.linuxDownload")}
+                            </a>
+                        </div>
+
+                        <div className="download-card">
+                            <div className="download-card__head">
+                                <WindowsIcon
+                                    className="card__icon"
+                                    aria-hidden="true"
+                                />
+                                <h3>{t("gettingStarted.windowsTitle")}</h3>
+                            </div>
+                            <p className="download-card__note">
+                                {t("gettingStarted.windowsNote")}
+                            </p>
+                            <div className="download-card__controls">
+                                <div className="download-card__field">
+                                    <label htmlFor="windows-arch">
+                                        {t("gettingStarted.windowsArchLabel")}
+                                    </label>
+                                    <select
+                                        id="windows-arch"
+                                        value={windowsArch}
+                                        onChange={event =>
+                                            setWindowsArch(
+                                                event.target.value as Arch,
+                                            )
+                                        }
+                                    >
+                                        <option value="amd64">amd64</option>
+                                        <option value="arm64">arm64</option>
+                                    </select>
+                                </div>
+                                <div className="download-card__field">
+                                    <label htmlFor="windows-format">
+                                        {t(
+                                            "gettingStarted.windowsFormatLabel",
+                                        )}
+                                    </label>
+                                    <select
+                                        id="windows-format"
+                                        value={windowsFormat}
+                                        onChange={event =>
+                                            setWindowsFormat(
+                                                event.target
+                                                    .value as WindowsFormat,
+                                            )
+                                        }
+                                    >
+                                        {WINDOWS_FORMATS.map(item => (
+                                            <option
+                                                key={item}
+                                                value={item}
+                                                lang={i18n.language}
+                                            >
+                                                {t(
+                                                    `gettingStarted.${WINDOWS_FORMAT_LABEL_KEYS[item]}`,
+                                                )}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                            </div>
+                            <a
+                                className="btn btn--primary"
+                                href={
+                                    release
+                                        ? urlOrReleasesPage(
+                                              windowsPackageUrl(
+                                                  release,
+                                                  windowsArch,
+                                                  windowsFormat,
+                                              ),
+                                          )
+                                        : LINKS.latestRelease
+                                }
+                                onClick={() =>
+                                    capturePackageDownload(
+                                        "windows",
+                                        windowsArch,
+                                        windowsFormat,
+                                    )
+                                }
+                            >
+                                <DownloadIcon />
+                                {t("gettingStarted.windowsDownload")}
+                            </a>
                         </div>
 
                         <div className="download-card">
@@ -362,6 +458,9 @@ export default function GettingStartedPage() {
                             </div>
                             <p className="download-card__note">
                                 {t("gettingStarted.macosNote")}
+                            </p>
+                            <p className="download-card__footnote">
+                                {t("gettingStarted.macosArchNote")}
                             </p>
                             <a
                                 className="btn btn--primary"
@@ -381,64 +480,6 @@ export default function GettingStartedPage() {
                                 <DownloadIcon />
                                 {t("gettingStarted.macosButton")}
                             </a>
-                            <p className="download-card__footnote">
-                                {t("gettingStarted.macosArchNote")}
-                            </p>
-                        </div>
-
-                        <div className="download-card">
-                            <div className="download-card__head">
-                                <WindowsIcon
-                                    className="card__icon"
-                                    aria-hidden="true"
-                                />
-                                <h3>{t("gettingStarted.windowsTitle")}</h3>
-                            </div>
-                            <p className="download-card__note">
-                                {t("gettingStarted.windowsNote")}
-                            </p>
-                            <div className="download-card__controls">
-                                <a
-                                    className="btn btn--primary"
-                                    href={
-                                        release
-                                            ? urlOrReleasesPage(
-                                                  windowsUrl(release, "amd64"),
-                                              )
-                                            : LINKS.latestRelease
-                                    }
-                                    onClick={() =>
-                                        capturePackageDownload(
-                                            "windows",
-                                            "amd64",
-                                            "zip",
-                                        )
-                                    }
-                                >
-                                    <DownloadIcon />
-                                    {t("gettingStarted.windowsX64")}
-                                </a>
-                                <a
-                                    className="btn btn--secondary"
-                                    href={
-                                        release
-                                            ? urlOrReleasesPage(
-                                                  windowsUrl(release, "arm64"),
-                                              )
-                                            : LINKS.latestRelease
-                                    }
-                                    onClick={() =>
-                                        capturePackageDownload(
-                                            "windows",
-                                            "arm64",
-                                            "zip",
-                                        )
-                                    }
-                                >
-                                    <DownloadIcon />
-                                    {t("gettingStarted.windowsArm64")}
-                                </a>
-                            </div>
                         </div>
                     </div>
 
@@ -540,16 +581,36 @@ export default function GettingStartedPage() {
                                     </li>
                                 </ol>
                                 <p>
-                                    {t("gettingStarted.nativeUpgradeNote")}
+                                    {t("gettingStarted.nativeWindowsUpgradeNote")}
                                 </p>
-                                <a
-                                    href={LINKS.windowsInstructions}
-                                    target="_blank"
-                                    rel="noreferrer"
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        flexWrap: "wrap",
+                                        gap: 16,
+                                    }}
                                 >
-                                    {t("gettingStarted.nativeFullInstructions")}{" "}
-                                    <ExternalLinkIcon />
-                                </a>
+                                    <a
+                                        href={LINKS.windowsInstructions}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {t(
+                                            "gettingStarted.nativeFullInstructions",
+                                        )}{" "}
+                                        <ExternalLinkIcon />
+                                    </a>
+                                    <a
+                                        href={LINKS.windowsInstallerDoc}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                    >
+                                        {t(
+                                            "gettingStarted.nativeWindowsInstallerGuide",
+                                        )}{" "}
+                                        <ExternalLinkIcon />
+                                    </a>
+                                </div>
                             </div>
                         </details>
                     </div>

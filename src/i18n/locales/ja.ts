@@ -190,26 +190,31 @@ const ja: Messages = {
         downloadsHint:
             "どれを選べばよいかわからない場合は、どのプラットフォームでもDockerが最も簡単です。",
         macosTitle: "macOS",
-        macosNote: "macOS 12以降が必要です。",
+        macosNote: "macOS 12以降向けのポータブルZIP。Apple Siliconが必要です。",
         macosButton: "macOS版をダウンロード",
-        macosArchNote: "Apple Silicon（arm64）。Intel Macの場合はDockerをご利用ください。",
+        macosArchNote: "Intel Macをお使いの場合は、代わりにDockerをご利用ください。",
         windowsTitle: "Windows",
         windowsNote:
-            "アプリケーション、UI、マイグレーション、すぐに使えるプロパティファイルを含むZIPアーカイブ。",
-        windowsX64: "Windows版をダウンロード（x64）",
-        windowsArm64: "Windows版をダウンロード（arm64）",
+            "ネイティブインストーラーまたはポータブルZIP。Windows 10、Server 2016以降が必要です。",
+        windowsArchLabel: "アーキテクチャ",
+        windowsFormatLabel: "パッケージ",
+        windowsDownload: "Windows版をダウンロード",
+        windowsFormats: {
+            installer: "インストーラー",
+            zip: "ポータブルZIP",
+        },
         linuxTitle: "Linux",
-        linuxNote: "amd64およびarm64向けのネイティブパッケージと汎用アーカイブ。",
+        linuxNote: "amd64およびarm64向けのネイティブパッケージとポータブルZIP。",
         linuxArchLabel: "アーキテクチャ",
         linuxFormatLabel: "パッケージ",
         linuxDownload: "Linux版をダウンロード",
         linuxFormats: {
-            deb: "deb — Debian、Ubuntu",
-            rpm: "rpm — Fedora、RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — 汎用アーカイブ",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "ポータブルZIP",
         },
         nativeTitle: "ネイティブインストール",
         nativeSubtitle:
@@ -243,15 +248,19 @@ const ja: Messages = {
             "ブラウザで http://your-host:8090 を開き、セットアップを完了します。",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "ZIPアーカイブを任意のディレクトリ（例: C:\\nginx-ignition）に展開します。",
+            "お使いのアーキテクチャ向けのインストーラーを実行します。Windows 10またはWindows Server 2016以降が必要で、インストーラーがまだ署名されていないため、Windows SmartScreenが確認を求める場合があります。",
         nativeWindowsStep2:
-            "nginx-ignition.properties を編集し、nginx.binary-path にnginx.exeの場所を設定します。",
+            "Express（nginxを自動検出し、127.0.0.1:8090で待ち受け、SQLiteを使用）を選択するか、Advancedでnginxのパス、ポート、データベース、サービスアカウント、ファイアウォール規則を設定します。",
         nativeWindowsStep3:
-            "管理者権限でコマンドプロンプトを開き、nginx-ignition.exe を実行します。",
+            "インストーラーはnginx-ignition Windowsサービス、ファイアウォール規則、イベントログソースを自動的に登録します。",
         nativeWindowsStep4:
-            "Windowsファイアウォールでポート8090を許可します。サービスとして実行するには、NSSMまたはWinSWを使用します。",
+            "サービスがまだ実行されていない場合は、サービスまたは管理者権限のコマンドプロンプトから起動します。サービスのログはイベントビューアーのnginx-ignitionソースに表示されます。",
         nativeWindowsStep5:
             "ブラウザで http://localhost:8090 を開き、セットアップを完了します。",
+        nativeWindowsUpgradeNote:
+            "アップグレード: 新しいバージョンのインストーラーを実行します。サービスを停止し、アプリケーションのファイルを置き換え、設定とデータを保持します。",
+        nativeWindowsInstallerGuide:
+            "インストーラーガイド（オプションとサイレントインストール）",
         firstStepsTitle: "インストール後にやること",
         firstStepsSubtitle: "使いこなすための簡単なチェックリスト：",
         firstSteps1: "セットアップウィザードを完了してサインインします。",
@@ -440,6 +449,10 @@ const ja: Messages = {
             migration: {
                 title: "移行ガイド",
                 body: "nginx ignition 1.xから2.xへのアップグレード。",
+            },
+            windowsInstaller: {
+                title: "Windowsインストーラー",
+                body: "インストーラーのオプション、サイレントインストール、アップグレード、アンインストール。",
             },
             apiTokens: {
                 title: "APIトークン",

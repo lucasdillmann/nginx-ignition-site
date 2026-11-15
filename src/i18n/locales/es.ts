@@ -190,26 +190,31 @@ const es: Messages = {
         downloadsHint:
             "¿No sabes cuál elegir? Docker es la opción más simple en cualquier plataforma.",
         macosTitle: "macOS",
-        macosNote: "Requiere macOS 12 o posterior.",
+        macosNote: "ZIP portátil para macOS 12 o posterior. Requiere Apple Silicon.",
         macosButton: "Descargar para macOS",
-        macosArchNote: "Apple Silicon (arm64). Macs con Intel: usa Docker.",
+        macosArchNote: "Si usas un Mac con Intel, usa Docker en su lugar.",
         windowsTitle: "Windows",
         windowsNote:
-            "Archivo ZIP con la aplicación, la interfaz, las migraciones y un archivo de propiedades listo para usar.",
-        windowsX64: "Descargar para Windows (x64)",
-        windowsArm64: "Descargar para Windows (arm64)",
+            "Instalador nativo o ZIP portátil. Requiere Windows 10, Server 2016 o posterior.",
+        windowsArchLabel: "Arquitectura",
+        windowsFormatLabel: "Paquete",
+        windowsDownload: "Descargar para Windows",
+        windowsFormats: {
+            installer: "Instalador",
+            zip: "ZIP portátil",
+        },
         linuxTitle: "Linux",
-        linuxNote: "Paquetes nativos y archivos genéricos, para amd64 y arm64.",
+        linuxNote: "Paquetes nativos y ZIP portátil, para amd64 y arm64.",
         linuxArchLabel: "Arquitectura",
         linuxFormatLabel: "Paquete",
         linuxDownload: "Descargar para Linux",
         linuxFormats: {
-            deb: "deb — Debian, Ubuntu",
-            rpm: "rpm — Fedora, RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — archivo genérico",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "ZIP portátil",
         },
         nativeTitle: "Instalación nativa",
         nativeSubtitle:
@@ -243,15 +248,19 @@ const es: Messages = {
             "Abre http://your-host:8090 y completa la configuración en el navegador.",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "Extrae el archivo ZIP en el directorio que prefieras, por ejemplo C:\\nginx-ignition.",
+            "Ejecuta el instalador para tu arquitectura. Requiere Windows 10 o Windows Server 2016 o posterior; Windows SmartScreen puede pedir confirmación porque el instalador aún no está firmado.",
         nativeWindowsStep2:
-            "Edita nginx-ignition.properties y define nginx.binary-path en la ubicación de tu nginx.exe.",
+            "Elige Express (detecta nginx automáticamente, escucha en 127.0.0.1:8090 y usa SQLite) o Advanced para definir la ruta de nginx, el puerto, la base de datos, la cuenta de servicio y las reglas de firewall.",
         nativeWindowsStep3:
-            "Ejecuta nginx-ignition.exe desde una consola de Administrador.",
+            "El instalador registra automáticamente el servicio de Windows nginx-ignition, las reglas de firewall y el origen del registro de eventos.",
         nativeWindowsStep4:
-            "Permite el puerto 8090 en el firewall de Windows. Para ejecutarlo como servicio, usa NSSM o WinSW.",
+            "Si el servicio aún no se está ejecutando, inícialo desde Servicios o una consola de Administrador. Los registros del servicio aparecen en el Visor de eventos bajo el origen nginx-ignition.",
         nativeWindowsStep5:
             "Abre http://localhost:8090 y completa la configuración en el navegador.",
+        nativeWindowsUpgradeNote:
+            "Actualización: ejecuta el instalador de la nueva versión. Detiene el servicio, reemplaza los archivos de la aplicación y conserva tu configuración y datos.",
+        nativeWindowsInstallerGuide:
+            "Guía del instalador (opciones e instalación silenciosa)",
         firstStepsTitle: "Después de instalar",
         firstStepsSubtitle: "Una lista corta para sacarle el máximo provecho:",
         firstSteps1: "Completa el asistente de configuración e inicia sesión.",
@@ -440,6 +449,10 @@ const es: Messages = {
             migration: {
                 title: "Guía de migración",
                 body: "Cómo actualizar de nginx ignition 1.x a 2.x.",
+            },
+            windowsInstaller: {
+                title: "Instalador de Windows",
+                body: "Opciones del instalador, instalación silenciosa, actualizaciones y desinstalación.",
             },
             apiTokens: {
                 title: "Tokens de API",

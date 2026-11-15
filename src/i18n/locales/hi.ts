@@ -190,26 +190,31 @@ const hi: Messages = {
         downloadsHint:
             "कौन-सा चुनें, समझ नहीं आ रहा? किसी भी प्लेटफ़ॉर्म पर Docker सबसे आसान विकल्प है।",
         macosTitle: "macOS",
-        macosNote: "macOS 12 या उससे नया चाहिए।",
+        macosNote: "macOS 12 या उससे नए के लिए पोर्टेबल ZIP। Apple Silicon चाहिए।",
         macosButton: "macOS के लिए डाउनलोड करें",
-        macosArchNote: "Apple Silicon (arm64)। Intel Macs: Docker इस्तेमाल करें।",
+        macosArchNote: "अगर आप Intel Mac इस्तेमाल करते हैं, तो कृपया इसके बजाय Docker का उपयोग करें।",
         windowsTitle: "Windows",
         windowsNote:
-            "ऐप्लिकेशन, UI, माइग्रेशन और तैयार properties फ़ाइल के साथ ZIP आर्काइव।",
-        windowsX64: "Windows के लिए डाउनलोड करें (x64)",
-        windowsArm64: "Windows के लिए डाउनलोड करें (arm64)",
+            "नेटिव इंस्टॉलर या पोर्टेबल ZIP। Windows 10, Server 2016 या नया संस्करण आवश्यक।",
+        windowsArchLabel: "आर्किटेक्चर",
+        windowsFormatLabel: "पैकेज",
+        windowsDownload: "Windows के लिए डाउनलोड करें",
+        windowsFormats: {
+            installer: "इंस्टॉलर",
+            zip: "पोर्टेबल ZIP",
+        },
         linuxTitle: "Linux",
-        linuxNote: "amd64 और arm64 के लिए नेटिव पैकेज और जेनेरिक आर्काइव।",
+        linuxNote: "amd64 और arm64 के लिए नेटिव पैकेज और पोर्टेबल ZIP।",
         linuxArchLabel: "आर्किटेक्चर",
         linuxFormatLabel: "पैकेज",
         linuxDownload: "Linux के लिए डाउनलोड करें",
         linuxFormats: {
-            deb: "deb — Debian, Ubuntu",
-            rpm: "rpm — Fedora, RHEL",
-            apk: "apk — Alpine",
-            pkgTarZst: "pkg.tar.zst — Arch Linux",
-            ipk: "ipk — OpenWrt",
-            zip: "zip — जेनेरिक आर्काइव",
+            deb: "Debian/Ubuntu (.deb)",
+            rpm: "Fedora/RHEL (.rpm)",
+            apk: "Alpine (.apk)",
+            pkgTarZst: "Arch Linux (.pkg.tar.zst)",
+            ipk: "OpenWrt (.ipk)",
+            zip: "पोर्टेबल ZIP",
         },
         nativeTitle: "नेटिव इंस्टॉल",
         nativeSubtitle:
@@ -243,15 +248,19 @@ const hi: Messages = {
             "http://your-host:8090 खोलें और ब्राउज़र में सेटअप पूरा करें।",
         nativeWindowsTitle: "Windows",
         nativeWindowsStep1:
-            "ZIP आर्काइव को अपनी पसंद की डायरेक्टरी में निकालें, जैसे C:\\nginx-ignition।",
+            "अपने आर्किटेक्चर के लिए इंस्टॉलर चलाएं। इसके लिए Windows 10 या Windows Server 2016 या नया संस्करण आवश्यक है; इंस्टॉलर अभी साइन न होने के कारण Windows SmartScreen पुष्टि मांग सकता है।",
         nativeWindowsStep2:
-            "nginx-ignition.properties एडिट करें और nginx.binary-path को अपनी nginx.exe के लोकेशन पर सेट करें।",
+            "Express चुनें (nginx को स्वतः पहचानता है, 127.0.0.1:8090 पर सुनता है और SQLite का उपयोग करता है), या Advanced में nginx पाथ, पोर्ट, डेटाबेस, सर्विस अकाउंट और फ़ायरवॉल नियम सेट करें।",
         nativeWindowsStep3:
-            "एडमिनिस्ट्रेटर प्रॉम्प्ट से nginx-ignition.exe चलाएं।",
+            "इंस्टॉलर स्वतः nginx-ignition Windows सर्विस, फ़ायरवॉल नियम और Event Log स्रोत रजिस्टर करता है।",
         nativeWindowsStep4:
-            "Windows Firewall में पोर्ट 8090 की अनुमति दें। सर्विस के रूप में चलाने के लिए NSSM या WinSW इस्तेमाल करें।",
+            "अगर सर्विस पहले से नहीं चल रही है, तो उसे Services या एडमिनिस्ट्रेटर प्रॉम्प्ट से शुरू करें। सर्विस लॉग Event Viewer में nginx-ignition स्रोत के अंतर्गत दिखते हैं।",
         nativeWindowsStep5:
             "http://localhost:8090 खोलें और ब्राउज़र में सेटअप पूरा करें।",
+        nativeWindowsUpgradeNote:
+            "अपग्रेड: नए संस्करण का इंस्टॉलर चलाएं। यह सर्विस रोकता है, ऐप्लिकेशन की फ़ाइलें बदलता है और आपकी कॉन्फ़िगरेशन व डेटा बनाए रखता है।",
+        nativeWindowsInstallerGuide:
+            "इंस्टॉलर गाइड (विकल्प और साइलेंट इंस्टॉल)",
         firstStepsTitle: "इंस्टॉल करने के बाद",
         firstStepsSubtitle: "इससे भरपूर फ़ायदा उठाने के लिए छोटी चेकलिस्ट:",
         firstSteps1: "सेटअप विज़ार्ड पूरा करें और साइन इन करें।",
@@ -440,6 +449,10 @@ const hi: Messages = {
             migration: {
                 title: "माइग्रेशन गाइड",
                 body: "nginx ignition 1.x से 2.x पर अपग्रेड करना।",
+            },
+            windowsInstaller: {
+                title: "Windows इंस्टॉलर",
+                body: "इंस्टॉलर विकल्प, साइलेंट इंस्टॉल, अपग्रेड और अनइंस्टॉल।",
             },
             apiTokens: {
                 title: "API टोकन",
